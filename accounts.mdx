@@ -1,0 +1,114 @@
+---
+title: "Accounts and Persistent Sessions in Crafted Gamz"
+sidebarTitle: "Accounts"
+description: "Sign in with Google, GitHub, or email to sync your settings, bookmarks, pins, installed apps, and session state across visits."
+---
+
+Accounts are what transform Crafted Gamz from a one-time session into a personalised workspace you can return to. Without an account, everything you do — the mode you choose, the bookmarks you save, the apps you install in Desktop mode, the tabs you open in Browser mode — exists only for the duration of that visit. With an account, all of that is stored in Firebase Firestore and restored the moment you sign back in, from any device or browser. For users who spend meaningful time in any of the three modes, signing in is the single most impactful thing they can do to improve their experience.
+
+## Sign-In Methods
+
+Crafted Gamz uses **Firebase Auth** (loaded via `firebase-auth-compat.js`) to handle authentication, and **Firebase Firestore** (loaded via `firebase-firestore-compat.js`) to store and sync per-user data. Three sign-in methods are supported, each suited to a slightly different preference.
+
+<Tabs>
+  <Tab title="Google">
+    Signing in with Google is the fastest option for most users. It requires no password and uses your existing Google account, making it a natural fit for Chromebook users who are already signed into Google on the device.
+
+    **Steps:**
+    1. Open Crafted Gamz and navigate to the sign-in screen, accessible from the account menu in any mode.
+    2. Click **Sign in with Google**.
+    3. A Google OAuth popup will appear. Select the Google account you want to use.
+    4. Grant the requested permissions. Crafted Gamz uses these solely to establish your identity — it does not access your Gmail, Drive, or other Google services.
+    5. You will be redirected back into the platform, signed in and ready to use. Your session is now persistent.
+
+    Google sign-in supports one-tap re-authentication on return visits, so subsequent sign-ins are typically frictionless.
+  </Tab>
+  <Tab title="GitHub">
+    GitHub sign-in is ideal for developers and users who prefer to consolidate their tool access under a single identity. It follows the same OAuth flow as Google.
+
+    **Steps:**
+    1. Open the sign-in screen from the account menu in any mode.
+    2. Click **Sign in with GitHub**.
+    3. A GitHub OAuth popup will appear. If you are not already signed into GitHub in your browser, you will be prompted to do so.
+    4. Review the permissions screen and click **Authorize**. Crafted Gamz requests only basic identity information — your GitHub username and email — to establish your account.
+    5. You will be returned to the platform as a signed-in user with persistent session state.
+
+    Your GitHub username may appear in account-related UI elements within the platform, such as the top bar in Desktop mode or the account page in Browser mode.
+  </Tab>
+  <Tab title="Email and Password">
+    Email and password sign-in is available for users who prefer not to link a third-party account. It is handled entirely through Firebase Auth and does not require any separate registration outside of Crafted Gamz.
+
+    **Steps to register a new account:**
+    1. Open the sign-in screen and select **Create an account** or **Sign up with Email**.
+    2. Enter your email address and choose a password. Firebase Auth enforces minimum password strength requirements.
+    3. Submit the form. Firebase will create your account and sign you in immediately.
+
+    **Steps to sign into an existing account:**
+    1. Open the sign-in screen and select **Sign in with Email**.
+    2. Enter the email address and password associated with your account.
+    3. Click **Sign In**. You will be returned to the platform with your session restored.
+
+    If you forget your password, use the **Forgot password** link on the sign-in screen. Firebase Auth will send a reset link to your email address.
+  </Tab>
+</Tabs>
+
+## What Accounts Sync
+
+When you are signed in, Crafted Gamz stores and restores the following across sessions and devices:
+
+<CardGroup cols={2}>
+  <Card title="Preferred Environment" icon="layer-group" href="/modes/overview">
+    The mode you last used — Website, Desktop, or Browser — is remembered so you return to the right environment on each visit.
+  </Card>
+  <Card title="Onboarding Progress" icon="check-circle" href="/quickstart">
+    Setup steps and introductory flows are tracked per account, so you are never walked through them again after completing them.
+  </Card>
+  <Card title="Bookmarks" icon="bookmark" href="/browser/navigation">
+    Bookmarks saved in Browser mode, including bookmarks bar pins, are stored to your account and available on every return visit.
+  </Card>
+  <Card title="Pins" icon="thumbtack" href="/desktop/dock-and-launcher">
+    Apps and shortcuts pinned to the Desktop dock or saved in other modes are tied to your account and restored automatically.
+  </Card>
+  <Card title="Open Tabs" icon="browser" href="/browser/overview">
+    Browser mode tab state is preserved per account, so your browsing session can be resumed where you left off.
+  </Card>
+  <Card title="Settings and Preferences" icon="sliders" href="/reference/settings">
+    Local preferences — including theme choices, background presets, and other configuration — are persisted per user.
+  </Card>
+  <Card title="App and Desktop State" icon="desktop" href="/desktop/overview">
+    Installed apps, window arrangements, and desktop configuration in Desktop mode are saved to your account.
+  </Card>
+  <Card title="Platform Statistics" icon="chart-bar" href="/introduction">
+    Account-linked activity contributes to per-user statistics visible in the top bar and platform stats widgets.
+  </Card>
+</CardGroup>
+
+<Note>
+  All sync data is stored in **Firebase Firestore**, a cloud-hosted NoSQL database. This means your account state is available from any browser or device where you sign in — not just the device where you originally set things up.
+</Note>
+
+## Guest Access
+
+Guest mode is available for users who want to explore Crafted Gamz without creating or linking an account. In guest mode, all platform features remain accessible — you can play games, use the proxy, open the AI assistant, browse media, and use Desktop mode — but nothing is saved when your session ends. Closing the tab or navigating away clears your state entirely.
+
+Guest mode is best suited to quick, one-off visits or initial exploration. For any meaningful ongoing use of the platform, signing in is strongly recommended. You can transition from a guest session to a signed-in session at any time by opening the account menu and completing the sign-in flow — though state accumulated during a guest session is not retroactively merged into the new account.
+
+<Tip>
+  If you try Crafted Gamz as a guest and want to keep using it, sign in before you close the tab. Once you authenticate, any future sessions will begin with your synced state restored.
+</Tip>
+
+## Account-Backed Features by Mode
+
+Each of the three modes in Crafted Gamz benefits from account sign-in in distinct ways.
+
+### Website Mode
+
+In Website mode, signing in preserves your preferred landing experience, any platform-level preferences you have configured, and your onboarding status. It also ensures that top-game tracking and platform statistics reflect your activity over time rather than treating each visit as a fresh start.
+
+### Desktop Mode
+
+Desktop mode has the deepest account integration. Your installed apps — everything you have added from the app store — are saved to your account so the same applications are present every time you open the desktop. Dock pins, window state, and desktop configuration are all persisted. The AI assistant also maintains continuity with your account context, allowing it to reference your installed apps and desktop state accurately across sessions.
+
+### Browser Mode
+
+Browser mode stores bookmarks, bookmarks bar pins, open tabs, server and region preferences, and your chosen theme and background preset. Because Browser mode is designed to function as a primary browsing workspace, this level of persistence is essential — returning to find your tabs, bookmarks, and visual setup intact makes the experience genuinely usable as a day-to-day tool rather than a single-session utility.

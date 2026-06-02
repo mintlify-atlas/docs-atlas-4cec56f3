@@ -1,0 +1,76 @@
+---
+title: "AI Assistant: Chat and Control Crafted Gamz"
+sidebarTitle: "AI Assistant"
+description: "Crafted Gamz includes an AI assistant across modes — from a simple chat interface in Website mode to a system-integrated Jarvis-style assistant in Desktop mode."
+---
+
+Crafted Gamz includes an AI assistant that adapts to the mode you are using. In Website and Browser mode, it functions as a conversational chat interface — a place to ask questions, get recommendations, or interact through natural language without leaving the platform. In Desktop mode, it becomes something meaningfully different: a system-integrated assistant that can interact with the desktop environment directly, opening and closing apps, installing software, and managing your workspace through plain-language commands. The same underlying assistant surfaces across all three modes, but its capabilities expand significantly as the environment becomes more sophisticated.
+
+## AI Chat (Website and Browser Mode)
+
+In Website mode, the AI assistant is accessible from the main landing page as a chat interface. You can open it, type a question or prompt, and receive a response without navigating away from the rest of the platform. It works as a general-purpose conversational AI, and it sits naturally alongside the other features on the Website mode landing experience.
+
+In Browser mode, the AI is available through the `cg://ai` internal page. Navigate to it from the Browser mode address bar and the chat interface loads inside the browser tab, consistent with how other `cg://` internal pages work. Because Browser mode supports tabs, you can keep `cg://ai` open in one tab while browsing or playing games in others.
+
+In both cases, the AI functions as a chat-first tool: you type, it responds. There is no system-level integration in these modes — the AI is conversational rather than operational.
+
+## Desktop AI Assistant
+
+Desktop mode is where the AI assistant becomes its most capable. Rather than functioning as a standalone chat interface, the Desktop AI is integrated into the desktop environment itself. It can read the current state of your desktop — which apps are installed, what is open, what is pinned to the dock — and take direct action in response to your instructions.
+
+This makes the Desktop AI function more like a lightweight Jarvis-style system helper than a typical chat tool. You describe what you want to happen, and the assistant carries it out inside the live desktop environment.
+
+The Desktop AI can perform the following actions:
+
+<CardGroup cols={2}>
+  <Card title="App Discovery" icon="magnifying-glass">
+    List your currently installed apps or retrieve apps available in the Desktop App Store — without you needing to open the store yourself.
+  </Card>
+  <Card title="App Installation" icon="download">
+    Install an app from the store by name. The assistant handles the installation and the app becomes available in your dock and launcher immediately.
+  </Card>
+  <Card title="App Launch" icon="play">
+    Open any installed app by name. The app opens in a new Desktop window without you needing to find it in the launcher or dock manually.
+  </Card>
+  <Card title="Window Management" icon="window-restore">
+    Close or minimize open windows. You can target a specific app window or ask the assistant to close everything currently open.
+  </Card>
+  <Card title="Dock Management" icon="grip">
+    Pin an app to the dock for persistent quick access, or unpin one you no longer want there. The dock updates immediately.
+  </Card>
+  <Card title="System Navigation" icon="gear">
+    Open the Settings panel or the App Store directly through a command, without clicking through the desktop UI.
+  </Card>
+</CardGroup>
+
+<Tip>
+  You do not need to use precise commands or memorize specific syntax when talking to the Desktop AI. It understands natural language, so instructions like "install the music app and pin it to my dock" or "close everything and open the browser" work as you would expect. Describe the outcome you want, and the assistant figures out the steps.
+</Tip>
+
+<Note>
+  The Desktop AI operates on your actual desktop environment in real time — it is not simulating actions or describing what could happen. When you ask it to open an app, the app opens. When you ask it to pin something to the dock, the dock changes. This is what distinguishes the Desktop AI from the chat-only AI available in Website and Browser mode.
+</Note>
+
+## Example Workflow
+
+The following sequence shows how you might use the Desktop AI to set up your workspace from a clean state.
+
+<Steps>
+  <Step title="Open the AI Assistant">
+    Launch the AI assistant from the Desktop interface. It opens as a window within your Desktop environment, just like any other app.
+  </Step>
+  <Step title="Ask What Is Available">
+    Type something like: *"What apps do I have installed?"* The assistant responds with a list of your currently installed apps, drawn from your live Desktop state.
+  </Step>
+  <Step title="Request an Installation">
+    Type: *"Install the music app."* The assistant checks the App Store, installs the app, and confirms when it is ready. You do not need to open the App Store yourself.
+  </Step>
+  <Step title="Open the New App">
+    Type: *"Open music."* The music app launches in a new Desktop window immediately. You can now interact with it while keeping the AI assistant open in its own window.
+  </Step>
+  <Step title="Adjust the Dock">
+    Type: *"Pin music to my dock."* The dock updates in real time to include the music app, so it will be there the next time you return to Desktop mode.
+  </Step>
+</Steps>
+
+For more on how the AI is integrated into the broader Desktop environment, see [Desktop AI Integration](/desktop/ai-integration).

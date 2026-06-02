@@ -1,0 +1,120 @@
+---
+title: "Browser Mode: A Full Proxy Browsing Environment"
+sidebarTitle: "Browser"
+description: "Browser mode transforms Crafted Gamz into a complete proxy browser with tabs, bookmarks, an address bar, server switching, and internal cg:// pages."
+---
+
+Browser mode is not a proxy search box. It is a complete, self-contained browsing environment built into Crafted Gamz — one that handles tabs, navigation history, bookmarks, server switching, and themed visual presentation the way a real browser does, all while routing traffic through the platform's proxy infrastructure. Where Website mode offers a proxy section as one feature among many, Browser mode makes proxy browsing the entire experience. For users who want Crafted Gamz to function as their primary daily browsing workspace — especially on Chromebooks or managed devices — Browser mode is the clearest expression of that goal.
+
+## Browser Features
+
+Browser mode replicates the essential surface of a modern web browser, built from the ground up inside Crafted Gamz's proxy environment.
+
+<Accordion title="Tab Management">
+  Open, close, and switch between multiple tabs without leaving the browser environment. Each tab maintains its own navigation state, so you can have a game, a proxied website, and an internal `cg://` page all open simultaneously. Saved tab state is tied to your account, so returning to a session picks up where you left off.
+</Accordion>
+
+<Accordion title="Navigation Controls">
+  The browser includes back and forward navigation, a reload button, and a home button. These controls behave as you would expect from any browser — back and forward step through your navigation history within a tab, reload refreshes the current page, and home returns you to the configured start page.
+</Accordion>
+
+<Accordion title="Address Bar">
+  A full address bar accepts both URLs and search queries. You can navigate directly to a web address or type a search term and the platform handles the routing. The address bar reflects your current location at all times, including `cg://` internal pages.
+</Accordion>
+
+<Accordion title="Bookmark Support and Bookmarks Bar">
+  Save any page as a bookmark and access it later from your bookmarks list or the bookmarks bar. The bookmarks bar sits just below the address bar for one-click access to your most-used destinations. Both bookmarks and the bar state are synced to your account, so they persist across sessions and devices.
+</Accordion>
+
+<Accordion title="Account and Settings Pages">
+  Dedicated account and settings pages are accessible from within the browser environment. You do not need to leave Browser mode to manage your Crafted Gamz account, update preferences, or review your sync state.
+</Accordion>
+
+<Accordion title="Connection Details and Server Switching">
+  Browser mode surfaces information about your current proxy connection, including which server or region is handling your traffic. You can switch servers or regions directly from the browser interface — useful when you want lower latency, a different exit point, or a fresh connection without resetting your session.
+</Accordion>
+
+## Internal Pages (cg://)
+
+Browser mode introduces a custom URL protocol — `cg://` — that provides instant access to Crafted Gamz's built-in pages without routing through the proxy engine. These pages behave like browser built-ins (similar to `chrome://` in Chrome) and load immediately regardless of network conditions.
+
+<Note>
+  Type any `cg://` address directly into the address bar to jump to that section instantly. These shortcuts work from any tab and are the fastest way to navigate between Crafted Gamz features while staying inside Browser mode.
+</Note>
+
+The full set of internal `cg://` pages is:
+
+| Address | Destination |
+|---|---|
+| `cg://games` | The Crafted Gamz game library |
+| `cg://movies` | The movie section |
+| `cg://ai` | The integrated AI chat assistant |
+| `cg://music` | The music section |
+| `cg://vms` | The virtual machines section |
+| `cg://about` | Platform information and credits |
+| `cg://settings` | Browser and platform settings |
+| `cg://account` | Your Crafted Gamz account page |
+
+## Themes and Backgrounds
+
+Browser mode includes its own visual system, separate from the rest of the platform. You can switch between dark and light themes and combine either with a background preset to change the overall feel of the environment.
+
+**Theme options:**
+
+- **Dark** — a dark-mode interface suited for low-light environments or users who prefer reduced brightness.
+- **Light** — a light-mode interface with higher contrast against content.
+
+**Background presets:**
+
+<CardGroup cols={3}>
+  <Card title="Minimal" icon="circle-half-stroke" href="browser/themes">
+    A clean, distraction-free background that keeps focus on content.
+  </Card>
+  <Card title="Aurora" icon="sparkles" href="browser/themes">
+    Soft gradients inspired by northern-lights color palettes.
+  </Card>
+  <Card title="Dusk" icon="sun" href="browser/themes">
+    Warm sunset tones with layered depth and color.
+  </Card>
+  <Card title="Ember" icon="fire" href="browser/themes">
+    Deep oranges and reds with a smoldering, atmospheric feel.
+  </Card>
+  <Card title="Ocean" icon="droplet" href="browser/themes">
+    Cool blues and aquatic gradients for a calm browsing environment.
+  </Card>
+  <Card title="Ash" icon="cloud" href="browser/themes">
+    Muted, neutral tones built around grays and subdued contrast.
+  </Card>
+  <Card title="Rose" icon="heart" href="browser/themes">
+    Soft pinks and warm magentas for a distinctive, personalized look.
+  </Card>
+</CardGroup>
+
+Theme and background choices are saved to your account and restored automatically when you return to Browser mode.
+
+## Account-Backed Continuity
+
+Browser mode is designed to persist. Everything meaningful about your browsing session is tied to your Crafted Gamz account and synced so it is available the next time you open Browser mode — whether on the same device or a different one.
+
+Account-backed state in Browser mode includes:
+
+- **Bookmarks** — every saved bookmark, available across sessions and devices.
+- **Pins** — pinned destinations or shortcuts preserved across visits.
+- **Saved tabs** — your open tab state, so returning to Browser mode restores the session you left.
+
+This level of continuity is what makes Browser mode a credible daily-driver environment rather than a single-use tool. Combined with server switching, `cg://` shortcuts, and a full visual customization system, it is built for users who plan to come back.
+
+<CardGroup cols={2}>
+  <Card title="Browser Overview" icon="browser" href="browser/overview">
+    A deeper look at the Browser mode environment and its architecture.
+  </Card>
+  <Card title="Navigation" icon="compass" href="browser/navigation">
+    Learn how to use tabs, history, bookmarks, and the address bar effectively.
+  </Card>
+  <Card title="Themes" icon="palette" href="browser/themes">
+    Explore all theme and background options available in Browser mode.
+  </Card>
+  <Card title="Internal Pages" icon="link" href="browser/internal-pages">
+    Full reference for every cg:// address and what it opens.
+  </Card>
+</CardGroup>

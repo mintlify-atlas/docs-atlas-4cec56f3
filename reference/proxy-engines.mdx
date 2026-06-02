@@ -1,0 +1,154 @@
+---
+title: "Proxy Engines: Ultraviolet, Scramjet, and Wisp"
+sidebarTitle: "Proxy Engines"
+description: "Crafted Gamz routes web traffic through Ultraviolet and Scramjet proxy engines, backed by Wisp WebSocket connections and a service worker with built-in ad blocking."
+---
+
+Crafted Gamz is built around a layered proxy architecture that combines two distinct proxy engines — Scramjet and Ultraviolet — with a Wisp WebSocket transport layer and a browser-registered service worker that ties everything together. This stack enables full web access without requiring any native application, browser extension, or VPN client. All proxy routing happens inside the browser itself, making the platform uniquely suited to Chromebooks, school environments, and any device where installing software is restricted.
+
+## Scramjet
+
+Scramjet is the primary proxy engine powering Crafted Gamz. It is loaded directly inside the service worker via `importScripts`:
+
+```js
+importScripts("/sj/scramjet.all.js");
+const { ScramjetServiceWorker } = $scramjetLoadWorker();
+```
+
+When a proxied request is initiated, the service worker instantiates a `ScramjetServiceWorker`, attaches a request listener, and routes all matching traffic through the Scramjet engine. Scramjet rewrites URLs, headers, and page content on the fly so that proxied sites load and behave correctly within the browser sandbox.
+
+Scramjet stores its runtime state in an IndexedDB database named `$scramjet`. This database persists proxy configuration, cookies, and policy data across navigations without relying on third-party server state. The service worker includes automatic database repair logic: on initialization it inspects the database for missing object stores and, if any are found, deletes and recreates the database to ensure a clean state before the proxy starts.
+
+<Note>
+  Scramjet is the active proxy engine for all requests routed through the service worker. Ultraviolet provides an alternative engine path for environments or use cases where Scramjet is not preferred.
+</Note>
+
+## Ultraviolet
+
+Ultraviolet is a secondary proxy engine also available on the Crafted Gamz platform. Like Scramjet, it rewrites web traffic client-side to allow access to the broader web from within a restricted or filtered network. Ultraviolet is a well-established engine in the browser-proxy ecosystem and provides a reliable alternative for users or deployments that prefer it.
+
+Both Scramjet and Ultraviolet are first-class options on the platform. The proxy access flow in Website mode, Browser mode, and the dedicated proxy section all benefit from this dual-engine approach, ensuring that users have a working path to the web even if one engine encounters compatibility issues with a particular site.
+
+For more on how users access the proxy, see the [Proxy Features guide](/features/proxy).
+
+## Wisp WebSocket Backend
+
+Wisp is the transport layer that sits beneath both proxy engines. Rather than making raw TCP connections — which browsers cannot do natively — Wisp tunnels those connections over WebSocket. This allows Scramjet and Ultraviolet to establish connections to arbitrary web servers without any native networking permissions.
+
+The result is a fully browser-native proxy experience: no native binary, no extension required, and no OS-level network changes. Wisp connections work within the same security constraints as any other WebSocket connection, which means the proxy stack is compatible with Chromebook's managed and sandboxed environment by design.
+
+## Service Worker Architecture
+
+The service worker (`sw.js`) is the central router for all proxy traffic in Crafted Gamz. It is registered when the platform loads and intercepts outbound `fetch` events, deciding whether each request should be handled natively or routed through Scramjet.
+
+Key behaviors of the service worker include:
+
+- **Immediate activation** — the service worker calls `self.skipWaiting()` on install and `self.clients.claim()` on activate, ensuring it takes control of all open tabs without waiting for a page reload.
+- **Selective interception** — requests to `supabase.co` are explicitly excluded from proxy handling and passed through natively, preventing interference with backend services.
+- **HTML injection** — all proxied HTML responses are modified to insert a small comment marker in the `<head>`, enabling proxy identification for debugging.
+- **Firefox cross-origin isolation workaround** — because Firefox requires `crossOriginIsolated` to be true for certain shared-memory features, the service worker detects the Firefox user agent and patches the global property before the proxy engine loads:
+
+```js
+if (navigator.userAgent.includes("Firefox")) {
+  Object.defineProperty(globalThis, "crossOriginIsolated", {
+    value: true,
+    writable: false,
+  });
+}
+```
+
+This ensures the proxy engine initializes correctly across all major browser environments without requiring separate service worker builds.
+
+<Note>
+  The service worker must be registered and active for proxy functionality to work. If the service worker fails to install — for example, due to a missing permission or an IndexedDB corruption — the proxy will not route requests. The platform includes automatic database repair logic to recover from IndexedDB state errors on startup.
+</Note>
+
+## Built-In Ad Blocking
+
+The Scramjet service worker includes a comprehensive built-in ad and tracker blocker. Every proxied request passes through an `isBlocked` check before it is fulfilled. If the request URL matches any entry in the blocked list, the service worker immediately returns a `403 Site Blocked` response without forwarding the request.
+
+Blocked domains and patterns are organized across several categories:
+
+**YouTube Ads**
+- `youtube.com/get_video_info?*adformat=*`
+- `youtube.com/api/stats/ads/*`
+- `youtube.com/pagead/*`
+
+**Facebook / Meta Ads and Tracking Pixels**
+- `.facebook.com/ads/*`
+- `.facebook.com/tr/*` (tracking pixel)
+- `.fbcdn.net/ads/*`
+- `graph.facebook.com/ads/*`
+
+**Twitter / X Ad Analytics**
+- `ads-api.twitter.com/*`
+- `analytics.twitter.com/*`
+- `.twitter.com/i/ads/*`
+
+**Amazon Ad System**
+- `.amazon-adsystem.com`
+- `aax.amazon-adsystem.com/*`
+- `c.amazon-adsystem.com/*`
+
+**Yahoo / Verizon / Oath Ad Network**
+- `.ads.yahoo.com`
+- `.advertising.com`
+- `.adtechus.com`
+- `.oath.com`
+- `.verizonmedia.com`
+
+**Major Ad Exchanges**
+- `.adnxs.com` / `.adnxs-simple.com` — AppNexus / Xandr
+- `.rubiconproject.com` / `.magnite.com` — Rubicon / Magnite
+- `.pubmatic.com` — PubMatic
+- `.criteo.com` — Criteo
+- `.openx.net` / `.openx.com` — OpenX
+- `.indexexchange.com` / `.casalemedia.com` — Index Exchange
+
+**Mobile Ad Networks**
+- `.adcolony.com` — AdColony
+- `.chartboost.com` — Chartboost
+- `.unityads.unity3d.com` — Unity Ads
+- `.tapjoy.com` — Tapjoy
+- `.applovin.com` — AppLovin
+- `.vungle.com` — Vungle
+- `.ironsrc.com` — IronSource
+- `.inmobiweb.com`, `.smaato.net`, `.fyber.com`, `.supersoniads.com`, `.startappservice.com`, `.airpush.com`
+
+**Content Recommendation Networks**
+- `.outbrain.com` — Outbrain
+- `.taboola.com` — Taboola
+- `.revcontent.com` — Revcontent
+- `.zedo.com`, `.mgid.com`
+
+**Generic Path Patterns**
+The blocker also matches path-based patterns that catch ad traffic regardless of the serving domain:
+
+| Pattern | What It Catches |
+|---|---|
+| `*/ads/*` | Generic ad endpoints |
+| `*/adserver/*` | Ad server routes |
+| `*/adclick/*` | Click-tracking redirects |
+| `*/banner_ads/*` | Banner ad assets |
+| `*/sponsored/*` | Sponsored content injection |
+| `*/promotions/*` | Promotional content |
+| `*/tracking/ads/*` | Ad tracking beacons |
+| `*/promo/*` | Promo content routes |
+| `*/affiliates/*` | Affiliate link trackers |
+| `*/partnerads/*` | Partner advertising assets |
+
+Blocking is performed entirely within the service worker using regex matching — no third-party filter list is fetched at runtime, and no network round-trip is required to decide whether a request is blocked.
+
+## Scramjet IndexedDB Stores
+
+Scramjet persists its runtime state across navigations using an IndexedDB database named `$scramjet`. The service worker ensures this database contains all five required object stores before the proxy engine is initialized. If any store is missing, the database is deleted and rebuilt cleanly.
+
+| Store | Purpose |
+|---|---|
+| `config` | Proxy engine configuration, including rewriting rules and feature flags |
+| `cookies` | Proxied site cookies, maintained separately from the browser's native cookie jar |
+| `redirectTrackers` | Tracks redirect chains to prevent redirect loops and handle multi-hop navigation |
+| `referrerPolicies` | Per-origin referrer policy overrides applied during request rewriting |
+| `publicSuffixList` | The public suffix list used for accurate cookie domain scoping across proxied sites |
+
+For user-facing proxy guidance — including how to start a proxy session, switch servers, and use the browser-mode proxy environment — see the [Proxy Features guide](/features/proxy).

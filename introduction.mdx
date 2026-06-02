@@ -1,0 +1,58 @@
+---
+title: "Crafted Gamz: A Hub for Games, Proxy, AI, and More"
+sidebarTitle: "Introduction"
+description: "Crafted Gamz is a browser-native platform with 100+ games, proxy browsing, AI, media, and a desktop OS experience — no installation required."
+---
+
+Crafted Gamz is a multi-mode browser platform that brings together browser games, proxy browsing, AI tools, media, apps, and a desktop-style environment — all without installing a single application. Unlike traditional unblocked game sites that offer little more than a flat list of titles, Crafted Gamz is built around continuity: you sign in, choose an environment that fits how you work or play, and return to a workspace that remembers exactly where you left off. It runs entirely in modern browsers and is especially well-suited for Chromebooks, where it can be installed as a Progressive Web App for a near-native experience.
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="bolt" href="/quickstart">
+    Get up and running in minutes. Open the platform, pick a mode, sign in, and start exploring games, proxy tools, and AI.
+  </Card>
+  <Card title="Accounts" icon="user" href="/accounts">
+    Learn how Google, GitHub, and email sign-in keep your bookmarks, pins, settings, and session state synced across visits.
+  </Card>
+  <Card title="Modes Overview" icon="layer-group" href="/modes/overview">
+    Understand the three core environments — Website, Desktop, and Browser — and when to use each one.
+  </Card>
+  <Card title="Proxy Features" icon="shield" href="/features/proxy">
+    Explore the Ultraviolet, Scramjet, and Wisp-backed proxy engines that make the wider web accessible from within the platform.
+  </Card>
+</CardGroup>
+
+## The Three Modes
+
+Crafted Gamz is organized around three distinct environments, each designed for a different style of use. You can switch between them at any time, and your account keeps your state intact across all of them.
+
+### Website Mode
+
+Website mode is the most immediate entry point into Crafted Gamz. It presents a familiar layout — a curated home page, a large browser game library, app shortcuts, AI chat, music and movie pages, virtual machine access, and a built-in proxy search — without requiring you to learn a more advanced interface first. It is the closest the platform comes to a classic unblocked-games hub, but it extends well beyond that category by layering in account features, media tools, and real proxy access from the same interface.
+
+### Desktop Mode
+
+Desktop mode transforms Crafted Gamz into a lightweight, browser-native operating system with a presentation that closely echoes macOS. It provides a windowed desktop layout, a dock for pinned and running apps, a launcher for quick access, and an app store where you can browse and install games, utilities, and internet apps. Windows support fullscreen, minimize, restore, and multi-window arrangements. A top bar displays account status, platform statistics, network state, and live weather. The centrepiece of Desktop mode is an AI assistant that goes beyond conversation — it can interact directly with the desktop environment, opening and closing apps, pinning items to the dock, managing windows, and navigating to settings or the app store on your behalf.
+
+### Browser Mode
+
+Browser mode turns Crafted Gamz into a fully featured proxy browsing environment. It provides tabs, back and forward navigation, reload and home controls, a complete address bar, bookmark management with a bookmarks bar, server and region switching, and connection details. Users can navigate to any address through the proxy or use `cg://` shortcuts to jump to built-in internal pages covering games, movies, AI, music, virtual machines, settings, and more. Browser mode also includes a visual theming system: choose between dark and light UI modes and pair them with background presets — Minimal, Aurora, Dusk, Ember, Ocean, Ash, or Rose — to shape the overall feel of the environment.
+
+## Account Support
+
+Crafted Gamz supports sign-in through **Google**, **GitHub**, and **email and password**, all powered by Firebase Auth and Firebase Firestore. Signing in unlocks persistent state across modes: your preferred environment, onboarding progress, bookmarks, pins, open tabs, settings, and app and desktop-related state are all saved and restored on every return visit. Guest access is also available for users who want to explore the platform immediately without creating an account.
+
+<Note>
+  Account sync is powered by Firebase Firestore, so your state is stored in the cloud and available from any device or browser where you sign in to Crafted Gamz.
+</Note>
+
+## Proxy Engines
+
+The proxy layer in Crafted Gamz is built on three complementary technologies: **Ultraviolet**, **Scramjet**, and **Wisp**. These engines handle the heavy lifting of routing external web traffic through the platform, making it possible to reach sites that would otherwise be inaccessible from restricted networks. Scramjet runs as a service worker and is configured directly in the platform's `sw.js`, giving it deep integration with the browsing pipeline. Ultraviolet provides an additional routing path, and Wisp handles the underlying connection layer. Together they power both the dedicated proxy search flow in Website mode and the full tabbed proxy browser in Browser mode.
+
+<Tip>
+  Browser mode gives you the most complete proxy experience — with tabs, bookmarks, server switching, and `cg://` internal pages — making it ideal if you want Crafted Gamz to function as your primary browsing environment.
+</Tip>
+
+## Progressive Web App Support
+
+Crafted Gamz ships with a full PWA manifest, meaning any modern browser can prompt you to install it as a standalone app. Once installed, it launches in its own window with no browser chrome, a black background, and the white theme color defined in its manifest — giving it the look and feel of a native application. The short name displayed on your home screen or taskbar is **C-Gamz**. PWA installation is especially useful on Chromebooks, where it integrates directly with the ChromeOS launcher and shelf.

@@ -1,23 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "Crafted Gamz",
+  "projectType": "saas",
+  "projectName": "Crafted Gamz",
+  "projectDescription": "A browser-native platform combining games, proxy browsing, AI, media, apps, and a desktop-style environment — all accessible from a Chromebook or any modern browser.",
   "theme": "almond",
-  "colors": {
-    "primary": "#7C3AED",
-    "light": "#A78BFA",
-    "dark": "#4C1D95"
-  },
-  "navbar": {
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/itscrafted/crafted-gamz"
-    }
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/itscrafted/crafted-gamz"
-    }
-  },
+  "primaryColor": "#7C3AED",
+  "lightColor": "#A78BFA",
+  "darkColor": "#4C1D95",
   "navigation": {
     "tabs": [
       {
@@ -80,5 +68,28 @@
         ]
       }
     ]
-  }
+  },
+  "keyFeatures": [
+    "Three distinct modes: Website, Desktop, and Browser",
+    "Account support with Google, GitHub, and email/password sign-in",
+    "100+ browser games across the platform",
+    "Built-in proxy via Ultraviolet and Scramjet",
+    "Browser-native desktop environment with window management and a dock",
+    "AI assistant integrated into Desktop mode with system-level control",
+    "Full proxy browser with tabs, bookmarks, and address bar",
+    "Music, movies, and virtual machine (VM) access",
+    "App store with installable games, internet, and utility apps",
+    "Multiple browser themes and background presets",
+    "Progressive Web App (PWA) support",
+    "Wisp-backed WebSocket proxy connections"
+  ],
+  "publicApiSurface": [
+    "cg:// internal browser page protocol",
+    "Scramjet proxy engine",
+    "Ultraviolet proxy engine",
+    "Wisp WebSocket backend",
+    "Firebase Auth (Google, GitHub, email/password)",
+    "Firebase Firestore (user data sync)",
+    "Service Worker (sw.js) with ad-blocking and proxy routing"
+  ]
 }

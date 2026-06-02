@@ -1,0 +1,110 @@
+---
+title: "Settings and Configuration in Crafted Gamz"
+sidebarTitle: "Settings"
+description: "Crafted Gamz settings let you configure your preferred environment, themes, proxy server, account preferences, and local state — accessible from every mode."
+---
+
+Crafted Gamz exposes a unified set of configuration options that follow you across all three modes — Website, Desktop, and Browser. Settings are split between account-backed preferences, which sync when you are signed in, and local preferences, which are stored in the browser and apply to guest or offline scenarios. Whether you are customizing your environment, switching your proxy region, or adjusting your visual theme, every setting is accessible without leaving the platform.
+
+## Accessing Settings
+
+Settings can be reached from any mode, and each mode provides its own natural entry point.
+
+<Tabs>
+  <Tab title="Website Mode">
+    In Website mode, settings are accessible from the main navigation. Look for the account or settings link in the site header. From there you can manage your account details, adjust preferences, and control how the platform behaves when you return.
+  </Tab>
+  <Tab title="Desktop Mode">
+    Desktop mode provides multiple paths to settings, consistent with its desktop-style design:
+
+    - **Top bar** — the top-bar widgets area includes account status and access to system-level controls, including settings.
+    - **Dock** — if you have pinned settings to your dock, you can open it with a single click.
+    - **Launcher** — open the launcher and search for "Settings" to navigate there directly.
+    - **AI assistant** — type or say "open settings" to the Desktop AI assistant and it will open the settings panel for you.
+
+    The AI integration makes settings access hands-free — particularly useful when you are in the middle of a session and do not want to interrupt your workflow.
+  </Tab>
+  <Tab title="Browser Mode">
+    Browser mode treats settings as a first-class internal page. You can navigate to settings in two ways:
+
+    - **Address bar** — type `cg://settings` in the browser address bar and press Enter.
+    - **Browser UI** — the account and settings pages are also accessible from the browser's account menu and navigation controls.
+
+    All browser-specific settings — including your proxy server selection, visual theme, and background preset — live here.
+  </Tab>
+</Tabs>
+
+## Account Settings
+
+When you are signed in, Crafted Gamz links your preferences and state to your account. Account settings include:
+
+- **Sign-in provider** — you can sign in with Google, GitHub, or email and password. Your current provider is shown in account settings, and the platform displays your profile information from your chosen identity source.
+- **Profile** — your display name and account details as synced from your sign-in provider.
+- **Synced data management** — account-backed data — including bookmarks, pins, open tabs, and environment preferences — can be reviewed and managed from this section. Clearing synced data resets the platform to a fresh state under your account without requiring you to sign out.
+
+<Tip>
+  Using an account-backed sign-in method (Google, GitHub, or email) lets your settings, bookmarks, pinned apps, and preferred environment persist across every device and browser session. Guest mode does not offer this continuity.
+</Tip>
+
+## Environment Preferences
+
+Crafted Gamz remembers which mode you prefer and returns you to it on subsequent visits. Environment preferences include:
+
+- **Preferred mode on login** — set whether the platform opens in Website, Desktop, or Browser mode when you sign in. This preference is stored with your account and respected on every device.
+- **Onboarding progress reset** — if you want to revisit the platform's onboarding flow — for example after a major update or when helping a new user — you can reset your onboarding progress from this section without affecting other account data.
+
+## Browser Mode Settings
+
+Browser mode has its own set of configuration options that apply specifically to the in-browser proxy experience:
+
+- **Proxy server and region** — select which proxy server and geographic region your traffic routes through. Switching regions can improve performance or help access region-specific content. Changes take effect immediately for new navigations.
+- **Theme** — toggle between **dark** and **light** mode for the browser interface. The theme applies to the browser chrome, tab bar, address bar, and internal pages.
+- **Background preset** — choose from a curated set of background presets to personalize the browser environment. Available presets include Minimal, Aurora, Dusk, Ember, Ocean, Ash, and Rose. Each preset changes the visual texture of the browser backdrop while keeping the interface fully functional.
+
+For a full walkthrough of the Browser mode visual system, see the [Browser Themes guide](/browser/themes).
+
+## Local Preferences
+
+Some preferences are stored locally in the browser rather than synced to your account. Local preferences apply in situations where account sync is not available — for example, if you are browsing as a guest or if the network is offline:
+
+- Local preferences persist across page reloads within the same browser session.
+- They are browser-specific: a preference set on one device will not transfer to another.
+- Clearing your browser's site data will remove local preferences.
+
+Local storage is primarily used for lightweight UI state, fallback theme preferences, and settings that do not require a sign-in to be meaningful.
+
+<Note>
+  Guest mode settings are stored locally and will be lost when the browser session ends or site data is cleared. If you want your configuration to persist, sign in with Google, GitHub, or email to back your preferences with your account.
+</Note>
+
+## PWA Installation
+
+Crafted Gamz is a Progressive Web App. You can install it to your device's home screen or app shelf directly from the browser — no app store required.
+
+**To install Crafted Gamz as a PWA:**
+
+<Steps>
+  <Step title="Open Crafted Gamz in your browser">
+    Navigate to the Crafted Gamz platform in Chrome, Edge, or another PWA-compatible browser.
+  </Step>
+  <Step title="Look for the install prompt">
+    The browser will display an install prompt in the address bar or as a banner. On Chrome, look for the install icon (a monitor with a down arrow) in the right side of the address bar.
+  </Step>
+  <Step title="Confirm the installation">
+    Click **Install** in the prompt. Crafted Gamz will be added to your device with the name **Crafted Gamz** (short name: **C-Gamz**).
+  </Step>
+  <Step title="Launch from your home screen or app shelf">
+    The installed PWA opens in standalone mode — without browser navigation chrome — giving it the feel of a native app. On Chromebooks, it appears in the launcher alongside other apps.
+  </Step>
+</Steps>
+
+The PWA manifest specifies `display: standalone`, a black background color (`#000000`), and a white theme color (`#ffffff`). The installed app uses the full Crafted Gamz icon at both 192×192 and 512×512 resolutions, ensuring a sharp appearance across all device densities and contexts.
+
+<CardGroup cols={2}>
+  <Card title="Proxy Features" href="/features/proxy">
+    Learn how to start a proxy session, switch servers, and browse the web through Crafted Gamz.
+  </Card>
+  <Card title="Modes Overview" href="/modes/overview">
+    Understand the difference between Website, Desktop, and Browser mode and how to switch between them.
+  </Card>
+</CardGroup>

@@ -1,0 +1,81 @@
+---
+title: "Navigating and Managing Tabs in Browser Mode"
+sidebarTitle: "Navigation"
+description: "Browser mode includes a full tab system, back/forward controls, bookmarks, an address bar, and server/region switching for a complete browsing experience."
+---
+
+Browser mode is built around a navigation system that mirrors what you would expect from a dedicated browser application. Rather than treating each proxied page as an isolated event, it maintains a coherent session with persistent tabs, a history stack you can move through, a bookmarks system, and real-time control over the proxy server your connection routes through. Every element is accessible from the browser shell without needing to leave the environment.
+
+## The Address Bar
+
+The address bar sits at the center of Browser mode's interface and is the primary way to move around. You can use it in several ways:
+
+- **Type a full URL** — entering any `https://` address routes the destination through the Crafted Gamz proxy automatically. You do not need to configure anything; the proxy connection is built in.
+- **Use the proxy directly** — if you want to navigate to a site by domain, just type it in the address bar and confirm. Browser mode handles the proxy layer transparently.
+- **Enter a `cg://` shortcut** — internal pages within Crafted Gamz are accessible directly from the address bar using `cg://` prefixed addresses. For example, typing `cg://games` takes you to the game library, and `cg://ai` opens the AI assistant — all without leaving the browser environment.
+
+The address bar updates to reflect your current location as you navigate, so you always know where you are and can copy or share the current destination.
+
+## Tabs
+
+Tabs let you keep multiple sites open at the same time, switching between them without losing your place. Browser mode supports a full tab system:
+
+- **Opening a new tab** — use the new tab button in the tab bar to open a fresh session alongside your existing tabs. Each tab maintains its own history stack.
+- **Closing a tab** — close any tab individually using the close control on the tab itself. Closing all tabs does not exit Browser mode.
+- **Switching tabs** — click any tab in the tab bar to bring it to the foreground. Your position within that tab — the current page and its scroll state — is preserved.
+- **Tab persistence** — when you are signed in to your Crafted Gamz account, your open tabs can be saved across sessions, so returning to Browser mode picks up roughly where you left off rather than starting fresh.
+
+Tabs behave independently, meaning loading or reloading a page in one tab does not affect any other open tab.
+
+## Back, Forward, Reload, and Home
+
+The four standard navigation controls are always available in the Browser mode toolbar:
+
+- **Back** — moves to the previous page in the current tab's history, just like pressing the back button in a conventional browser.
+- **Forward** — moves forward in the history if you have already gone back, restoring pages you navigated away from.
+- **Reload** — reloads the current page through the proxy. Useful when a page loads incompletely or you want fresh content.
+- **Home** — returns the current tab to the Browser mode home or starting page, giving you a reliable way to reset a tab without closing it.
+
+These controls apply per-tab, so navigating backward in one tab has no effect on any other open tab's history.
+
+## Bookmarks
+
+Bookmarks let you save destinations and return to them instantly without re-typing addresses. Browser mode supports both individual bookmarks and a visible bookmarks bar:
+
+- **Adding a bookmark** — when you are on a page you want to save, use the bookmark action in the browser toolbar. The page's title and URL are saved to your bookmark list.
+- **Accessing bookmarks** — your saved bookmarks are available through the bookmarks panel or menu within Browser mode. Selecting one navigates the current tab to that destination.
+- **The bookmarks bar** — the bookmarks bar is a persistent strip beneath the address bar that shows your most important bookmarks as one-click shortcuts. Pinning a bookmark to the bar puts it within reach at all times, regardless of which site you are currently viewing.
+- **Syncing bookmarks** — when you are signed in to your Crafted Gamz account, bookmarks are synced to your account so they appear on any device you use to access Browser mode.
+
+<Steps>
+  <Step title="Navigate to the page you want to bookmark">
+    Use the address bar to open any site or `cg://` internal page you want to save. Confirm the page has loaded correctly before adding the bookmark.
+  </Step>
+  <Step title="Activate the bookmark action">
+    Find the bookmark icon in the browser toolbar — typically displayed near the address bar — and click or tap it. The current page's title and URL are saved immediately to your bookmarks.
+  </Step>
+  <Step title="Open your bookmarks list">
+    Access your bookmarks through the bookmarks panel or menu in Browser mode to confirm the new entry appears. You can rename it here if the default page title is not descriptive enough.
+  </Step>
+  <Step title="Pin it to the bookmarks bar">
+    Find the option to add the bookmark to your bookmarks bar — usually available from the bookmark's context menu or edit view. Once pinned, it appears as a visible shortcut in the bar beneath the address bar, ready for one-click access on every page.
+  </Step>
+</Steps>
+
+## Server and Region Switching
+
+The proxy layer powering Browser mode connects through servers that can be changed at any time. Server and region switching gives you control over which proxy endpoint your traffic routes through:
+
+- **Why switch servers** — a server closer to your physical location typically delivers faster page loads. If a particular server is under heavy load or experiencing issues, switching to another region can restore normal performance.
+- **How to switch** — the server or region selector is available within the Browser mode interface, usually through the connection or settings area of the toolbar. Select a different server or region and your subsequent requests will route through the new endpoint.
+- **No tab reload required automatically** — depending on the current state, you may want to reload an active tab after switching servers to ensure the new connection is used for the current page.
+
+## Connection Details
+
+Browser mode surfaces connection information so you can understand how your current session is proxied. The connection details view typically shows the active proxy endpoint, connection status, and the engine being used to handle requests. This information is useful for diagnosing slow loads, confirming you are connected through the proxy, or verifying which region your traffic is currently routing through.
+
+Access connection details through the status indicator or connection icon in the browser toolbar.
+
+<Note>
+  Tab persistence and bookmark syncing both require you to be signed in to your Crafted Gamz account. Guest sessions in Browser mode are fully functional, but tab state and bookmarks are stored locally only and will not carry over to other devices or survive a session clear. Sign in through the account page or the `cg://account` internal page to enable cross-device continuity.
+</Note>

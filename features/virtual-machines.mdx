@@ -1,0 +1,47 @@
+---
+title: "Virtual Machines in Crafted Gamz"
+sidebarTitle: "Virtual Machines"
+description: "Crafted Gamz provides browser-accessible virtual machine environments — available from the Website mode VM pages and the cg://vms Browser mode internal page."
+---
+
+Crafted Gamz includes access to virtual machine environments that run entirely inside the browser, with no native software, hypervisor installation, or operating system configuration required on your end. For users on Chromebooks and other locked-down devices where running native applications is difficult or impossible, browser-based VM access offers a meaningful extension of what the platform can do — letting you interact with a lightweight OS environment from the same place you play games, browse the web, and use the AI assistant. VMs are accessible from both Website mode and Browser mode, making them reachable regardless of which part of the platform you are using.
+
+## Accessing VMs
+
+Virtual machine access is surfaced in two places across the platform, one for each of the primary non-Desktop modes.
+
+<Tabs>
+  <Tab title="Website Mode">
+    Website mode includes dedicated virtual machine pages accessible from the main landing experience. Navigate to the VM section from the home page to reach the available virtual machine environments. This is the most direct path if you are starting from the Website mode landing experience and want to get into a VM quickly without switching to a full browser environment.
+  </Tab>
+  <Tab title="Browser Mode">
+    In Browser mode, virtual machines are accessible through the `cg://vms` internal page. Enter that address in the Browser mode address bar to load the VM interface as a browser tab. This integrates VM access naturally into the Browser mode workflow — you can keep `cg://vms` open in one tab while using other tabs for proxy browsing, games, or the AI assistant.
+  </Tab>
+</Tabs>
+
+## Use Cases
+
+Browser-based VM access is most valuable in environments where users cannot install native software or configure system-level tools. Crafted Gamz is specifically designed with Chromebook users in mind, and VMs add a meaningful layer of capability on top of what Chrome OS itself provides.
+
+Practical use cases include:
+
+- **Running a lightweight OS environment**: Access a virtual Linux or other OS environment to work with a command line, run scripts, or explore a different computing context — all from within a browser tab.
+- **Testing and experimentation**: Use a VM to try out a configuration or environment without affecting your actual device or browser state.
+- **Extending Chromebook capabilities**: Chrome OS is intentionally limited in what native software it can run. A browser-based VM gives Chromebook users access to a more general-purpose computing environment without requiring Linux mode, developer mode, or any system modifications.
+- **Isolated browsing contexts**: Run a session inside a VM when you want to keep it separate from your main browser activity.
+
+Because the VM runs inside the browser, it is as portable as any other feature on the platform. You can access it from any device that runs a modern browser, not just the device you originally used.
+
+## Account Continuity
+
+Signing in to Crafted Gamz helps preserve state across sessions, and this applies to VM-related preferences and configuration as well. Users who are signed in can expect a more consistent experience when returning to VM access — account-backed continuity means that your setup and preferences are more likely to carry over between visits rather than resetting each time. Guest users can access the VM feature, but may not retain configuration or session state between visits.
+
+For more on accounts and continuity across the platform, see [Accounts](/accounts).
+
+<Note>
+  Virtual machines on Crafted Gamz run inside the browser using web-native technologies. No native installation, hypervisor software, or system-level configuration is required on your device. If your browser supports the modern web standards the platform depends on, VM access will work.
+</Note>
+
+<Tip>
+  If you are on a Chromebook, browser-based VM access is particularly powerful because Chrome OS does not readily support running arbitrary native applications. Crafted Gamz gives you a path to a more general-purpose computing environment — including command-line tools and a lightweight OS shell — from entirely within the browser you already have. No developer mode, no Linux beta setup, and no system modifications required.
+</Tip>

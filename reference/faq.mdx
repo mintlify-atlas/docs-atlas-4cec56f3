@@ -1,0 +1,195 @@
+---
+title: "Frequently Asked Questions About Crafted Gamz"
+sidebarTitle: "FAQ"
+description: "Answers to common questions about Crafted Gamz — covering modes, accounts, proxy, games, AI, and Chromebook compatibility."
+---
+
+This page collects the most common questions about Crafted Gamz, covering everything from the basics of what the platform is to the details of how the proxy works, what the AI can do in Desktop mode, and how your data is handled. If you are new to the platform, start with the first few questions for a quick orientation. If you are looking for something specific, each section below addresses a distinct part of the experience.
+
+<AccordionGroup>
+
+<Accordion title="What is Crafted Gamz?">
+  Crafted Gamz is a multi-mode browser platform that combines games, proxy browsing, AI, media, apps, and a desktop-style environment into a single experience. It is designed to give users one place to play, browse, personalize their setup, and return to a workspace that still feels familiar.
+
+  The platform runs entirely in the browser — no installation required — and is especially well-suited to Chromebooks and other managed devices where installing software is restricted. It is simultaneously a classic unblocked games hub, a proxy platform, a custom browser environment, and a browser-native desktop operating system.
+
+  For a complete overview of what Crafted Gamz offers, see the [Introduction](/introduction).
+</Accordion>
+
+<Accordion title="Does Crafted Gamz require any installation?">
+  No. Crafted Gamz runs entirely in your browser without any downloads, extensions, or native applications. You can use every feature — games, proxy, AI, media, apps, and the full desktop environment — directly from a browser tab.
+
+  If you want a more app-like experience, Crafted Gamz is also available as a **Progressive Web App (PWA)**. Installing the PWA adds Crafted Gamz to your home screen or Chromebook launcher with the name **Crafted Gamz** (short name: **C-Gamz**), and it opens in standalone mode without browser navigation chrome. To install, look for the install prompt in the address bar when you visit the platform.
+
+  PWA installation is entirely optional — the full platform is accessible either way.
+</Accordion>
+
+<Accordion title="What's the difference between Website, Desktop, and Browser mode?">
+  Crafted Gamz is organized around three distinct environments, each suited to a different style of use:
+
+  **Website mode** is the most familiar and immediate face of the platform. It resembles a classic unblocked games and proxy site, with a game library, app shortcuts, AI chat, music and movie pages, and a search and proxy section. It is the fastest way to get started.
+
+  **Desktop mode** is the most expansive environment. It is designed to feel like a lightweight browser-native operating system — modeled loosely on macOS — with a windowed desktop, a dock, a launcher, an app store, and a built-in AI assistant that can interact directly with the desktop. If you want a persistent, configurable workspace, Desktop mode is the clearest expression of that.
+
+  **Browser mode** turns Crafted Gamz into a full proxy browsing environment with tabs, back/forward navigation, a real address bar, bookmarks, server switching, theme control, and internal `cg://` pages. It makes the proxy experience feel like using a real browser rather than a one-off tool.
+
+  See the [Modes Overview](/modes/overview) for a deeper comparison, or jump directly to [Website](/modes/website), [Desktop](/modes/desktop), or [Browser](/modes/browser) mode documentation.
+</Accordion>
+
+<Accordion title="Do I need an account to use Crafted Gamz?">
+  No. Guest access is available for users who want to get started quickly without signing in. As a guest you can access games, proxy features, AI chat, media, and all three modes without creating an account.
+
+  However, the broader platform is built around long-term use and returning identity. A signed-in account enables:
+
+  - Your preferred mode being remembered across sessions
+  - Synced bookmarks, pinned apps, and open tabs in Browser mode
+  - Account-backed onboarding progress
+  - Desktop app and settings state that persists between visits
+  - Access to the same workspace from any device
+
+  If you plan to use Crafted Gamz regularly, signing in is strongly recommended.
+</Accordion>
+
+<Accordion title="Which sign-in methods are supported?">
+  Crafted Gamz supports three sign-in methods:
+
+  - **Google** — sign in with any Google account
+  - **GitHub** — sign in with your GitHub account
+  - **Email and password** — create a Crafted Gamz-specific account with an email address and password
+
+  All three providers offer the same account-backed continuity features. Choose whichever you prefer. You can manage your sign-in provider and profile from the [Settings](/reference/settings) page.
+</Accordion>
+
+<Accordion title="How does the proxy work?">
+  The proxy system in Crafted Gamz is built on three layers working together:
+
+  1. **Proxy engines** — Crafted Gamz uses two proxy engines: **Scramjet** (primary) and **Ultraviolet** (alternative). Both rewrite URLs, headers, and page content client-side so that proxied sites load correctly inside the browser sandbox.
+
+  2. **Wisp WebSocket transport** — Instead of making raw TCP connections (which browsers cannot do natively), the proxy engines tunnel connections over WebSocket using the Wisp protocol. This is what enables true web access without any native networking permissions.
+
+  3. **Service worker** — A browser service worker intercepts outbound requests and routes them through Scramjet. The service worker is registered automatically when you load the platform and handles all proxy traffic without any user configuration.
+
+  The entire proxy stack runs inside the browser — no extension, VPN, or native binary is needed. The service worker also includes a built-in ad and tracker blocker that filters hundreds of ad domains and path patterns before they ever reach the network.
+
+  For full technical details, see the [Proxy Engines reference](/reference/proxy-engines). For user-facing proxy guidance, see the [Proxy Features guide](/features/proxy).
+</Accordion>
+
+<Accordion title="Does the proxy work on Chromebooks?">
+  Yes. Crafted Gamz is specifically designed with Chromebooks and managed browser environments in mind. Because the entire proxy stack — including both the Scramjet and Ultraviolet engines — runs inside a browser service worker using WebSocket connections, no native application installation or OS-level permission is required.
+
+  This means the proxy works within Chrome OS's sandboxed environment, even on school-managed or policy-restricted Chromebooks where installing software or extensions is not permitted. The platform also includes a Firefox cross-origin isolation workaround in the service worker, ensuring compatibility across browser environments beyond Chrome.
+
+  For more details on Chromebook compatibility and the proxy architecture, see the [Proxy Engines reference](/reference/proxy-engines).
+</Accordion>
+
+<Accordion title="What games are available?">
+  Crafted Gamz includes a library of more than **100 browser games** spanning a wide range of categories — action, adventure, puzzle, arcade, and more. Games are playable directly in the browser with no downloads or plugins required.
+
+  Games are accessible from all three modes:
+
+  - In **Website mode**, the game library is the main landing experience and is browsable from the home page.
+  - In **Desktop mode**, games are available as installable apps through the App Store. You can pin favorite games to your dock for quick access.
+  - In **Browser mode**, the `cg://games` internal page provides a full game directory within the browser environment.
+
+  For more information, see the [Games feature page](/features/games).
+</Accordion>
+
+<Accordion title="Can I use the AI assistant without Desktop mode?">
+  Yes. AI chat is available in both **Website mode** and **Browser mode** — you do not need to be in Desktop mode to have a conversation with the AI assistant.
+
+  - In Website mode, the AI chat interface is accessible from the main navigation.
+  - In Browser mode, the `cg://ai` internal page opens the AI chat experience within the browser environment.
+
+  The AI in these modes functions as a conversational assistant — you can ask questions, get help with content, or use it as a general-purpose AI chat interface.
+
+  What is unique to Desktop mode is the system integration layer. See the next question for details on what the Desktop AI can do beyond standard chat.
+</Accordion>
+
+<Accordion title="What does the Desktop AI assistant do that regular AI chat doesn't?">
+  The Desktop AI assistant has the ability to interact directly with the desktop environment itself — not just respond to questions. In addition to standard conversational AI, it functions as a Jarvis-style system helper that can perform actions on your behalf:
+
+  - **List installed apps** — ask what apps you have installed and get a real-time answer
+  - **Browse the App Store** — ask which apps are available for installation
+  - **Install apps** — instruct the assistant to install an app from the store
+  - **Open apps** — tell it to open any installed app
+  - **Close or minimize windows** — manage open windows by voice or text command
+  - **Pin and unpin apps** — adjust your dock without navigating the UI manually
+  - **Open Settings or the App Store** — navigate to system areas via natural language
+
+  This level of system control is exclusive to Desktop mode because it requires the desktop shell's window management and app state to be active. In Website and Browser mode, the AI operates as a chat assistant without access to system actions.
+
+  For more, see the [Desktop AI Integration guide](/desktop/ai-integration) and the [AI Assistant feature page](/features/ai-assistant).
+</Accordion>
+
+<Accordion title="Can I watch movies and listen to music on Crafted Gamz?">
+  Yes. Crafted Gamz includes dedicated media sections for both movies and music, accessible from all three modes.
+
+  - **Website mode** includes movie and music pages as part of the main site navigation.
+  - **Desktop mode** offers media apps that can be installed, launched in windows, and pinned to the dock — just like any other desktop application.
+  - **Browser mode** provides `cg://movies` and `cg://music` internal pages accessible from the address bar.
+
+  Media playback runs entirely in the browser with no additional software required. For more details on what the media features include, see the [Media feature page](/features/media).
+</Accordion>
+
+<Accordion title="What are cg:// pages?">
+  `cg://` pages are internal pages unique to **Browser mode** in Crafted Gamz. They work like `chrome://` or `about:` pages in a standard browser — you type them in the address bar and they load a built-in Crafted Gamz page rather than navigating to an external website.
+
+  Available internal pages include:
+
+  | URL | Destination |
+  |---|---|
+  | `cg://settings` | Settings and configuration |
+  | `cg://account` | Account profile and sign-in |
+  | `cg://games` | Game library |
+  | `cg://movies` | Movie browsing |
+  | `cg://music` | Music player |
+  | `cg://ai` | AI assistant chat |
+  | `cg://vms` | Virtual machines |
+  | `cg://about` | Platform information |
+
+  `cg://` pages are only available inside Browser mode and will not resolve in Website or Desktop mode. For a complete guide to Browser mode navigation, see the [Browser Internal Pages reference](/browser/internal-pages).
+</Accordion>
+
+<Accordion title="How do I switch between modes?">
+  You can switch between Website, Desktop, and Browser mode at any time from within the platform. The mode-switching control is accessible from the main navigation in Website mode and from the top bar or launcher in Desktop mode.
+
+  If you have a signed-in account, your preferred mode is remembered and the platform will return you to it automatically on your next visit. You can change your preferred mode from [Settings](/reference/settings) under Environment Preferences.
+
+  For a detailed walkthrough of each mode and how to navigate between them, see the [Modes Overview](/modes/overview).
+</Accordion>
+
+<Accordion title="Is Crafted Gamz free?">
+  Yes. Crafted Gamz is free to use. The full platform — including all games, proxy features, AI chat, media, apps, and the Desktop and Browser mode environments — is available at no cost.
+
+  No subscription, payment, or account is required to access the core experience. Creating a free account unlocks continuity features like synced settings, bookmarks, and persistent desktop state, but the platform itself does not charge for these.
+</Accordion>
+
+<Accordion title="What happens to my data if I use guest mode?">
+  In guest mode, Crafted Gamz stores your preferences and state locally in the browser. This means:
+
+  - Your settings, theme choices, and any configurations you make will persist within the same browser session and across page reloads.
+  - When the browser session ends, or if you clear site data for Crafted Gamz, all locally stored guest data will be lost.
+  - Your data is not synced to any account and cannot be recovered after the session ends.
+  - Guest data is not tied to any identity and is not transmitted to Crafted Gamz servers.
+
+  If you want your setup to persist between visits and across devices, sign in with Google, GitHub, or email. Account-backed data is stored securely and remains available whenever you sign in, regardless of which browser or device you use.
+
+  See the [Accounts guide](/accounts) for full details on what is and is not synced.
+</Accordion>
+
+</AccordionGroup>
+
+<CardGroup cols={2}>
+  <Card title="Getting Started" href="/quickstart">
+    Follow the quickstart guide to set up your account and explore your first session on Crafted Gamz.
+  </Card>
+  <Card title="Proxy Engines Reference" href="/reference/proxy-engines">
+    Deep dive into how Scramjet, Ultraviolet, and Wisp work together under the hood.
+  </Card>
+  <Card title="Modes Overview" href="/modes/overview">
+    Compare Website, Desktop, and Browser mode to find the environment that fits your workflow.
+  </Card>
+  <Card title="Settings" href="/reference/settings">
+    Learn how to configure your preferences, theme, proxy server, and account options.
+  </Card>
+</CardGroup>

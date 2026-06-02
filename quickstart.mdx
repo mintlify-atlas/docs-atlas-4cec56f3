@@ -1,47 +1,63 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with Crafted Gamz in Minutes"
+sidebarTitle: "Quickstart"
+description: "Learn how to open Crafted Gamz, choose a mode, sign in, and start using games, proxy, and AI tools in under five minutes."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+By the end of this guide you will have Crafted Gamz open in your browser, a mode selected that matches how you want to use the platform, and your first feature — whether that's a game, an AI conversation, or a proxied site — up and running. The entire process takes fewer than five minutes, requires no installation, and works in any modern browser, including Chrome, Edge, Firefox, and the built-in browser on Chromebooks.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Open the Platform">
+    Navigate to the Crafted Gamz URL in your browser. No download, plugin, or extension is required — the platform runs entirely in the browser. It works on Windows, macOS, Linux, and ChromeOS. On Chromebooks in particular, Crafted Gamz is optimised for the browser environment and performs well without any additional configuration. When the page loads, you will see the platform initialising through its Firebase-backed session layer before presenting your entry point.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
 
-    ```bash
-    your-cli init
-    ```
+  <Step title="Choose Your Mode">
+    Crafted Gamz offers three distinct environments. Select the one that best fits what you want to do right now — you can always switch later.
+
+    - **Website** — The most immediate option. A familiar layout gives you fast access to the game library, app shortcuts, AI chat, music, movies, virtual machines, and proxy search. Choose this if you want to jump straight into a game or explore the platform's breadth without learning a new interface.
+    - **Desktop** — A browser-native OS experience with a windowed layout, dock, launcher, and app store. Choose this if you want a persistent workspace that feels like a lightweight operating system, complete with an AI assistant that can interact with your desktop.
+    - **Browser** — A full proxy browsing environment with tabs, navigation controls, bookmarks, server switching, and `cg://` internal pages. Choose this if you want to use Crafted Gamz as your primary browsing tool or if proxy access is your main priority.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
 
-    ```bash
-    your-cli start
-    ```
+  <Step title="Sign In or Continue as a Guest">
+    Crafted Gamz supports three sign-in methods — **Google**, **GitHub**, and **email and password** — all handled through Firebase Auth. Signing in gives you a persistent session: your settings, bookmarks, pins, open tabs, preferred environment, and app state are all saved to Firebase Firestore and restored every time you return.
+
+    If you are not ready to create an account, select the guest option to proceed immediately. Guest mode gives you full access to the platform's features within the current session, but nothing is saved when you close the tab.
+
+    <Tip>
+      Guest mode is the fastest way to explore Crafted Gamz. You can sign in later at any time from the account menu in any mode to start persisting your session going forward.
+    </Tip>
+  </Step>
+
+  <Step title="Explore Your First Feature">
+    Once you are inside the platform, try one of the following to get your bearings:
+
+    - **Play a game** — In Website or Desktop mode, browse the game library and open any title. Crafted Gamz hosts more than one hundred game pages, covering action, adventure, puzzle, and more. Games open directly in the browser with no additional setup.
+    - **Start an AI conversation** — Open the AI chat from Website mode's navigation or from the AI assistant panel in Desktop mode. The Desktop assistant can also control your environment — ask it to open an app, install something from the app store, or pin an item to the dock.
+    - **Browse through the proxy** — In Browser mode, type any URL into the address bar and navigate through the Scramjet or Ultraviolet proxy engine. Use `cg://games`, `cg://movies`, or `cg://ai` to jump to built-in internal pages.
+  </Step>
+
+  <Step title="Install as a PWA (Optional)">
+    If your browser supports Progressive Web Apps — which includes Chrome, Edge, and the ChromeOS browser — you will see an install prompt in the address bar or browser menu. Click it to install Crafted Gamz as a standalone app. Once installed, it opens in its own window under the name **C-Gamz**, with no browser chrome, giving it the appearance of a native application. On Chromebooks, it integrates directly with the launcher and shelf for quick access.
+
+    <Note>
+      Installing the PWA does not change how the platform works — it simply makes it easier to open and gives it its own window. All features, modes, and account sync work exactly the same way.
+    </Note>
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## Explore Each Mode in Depth
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+Now that you are up and running, dive deeper into the mode you chose — or explore the others to see what they offer.
+
+<CardGroup cols={3}>
+  <Card title="Website Mode" icon="globe" href="/modes/website">
+    Games, apps, AI chat, media, and proxy search in a familiar, fast-access layout.
+  </Card>
+  <Card title="Desktop Mode" icon="desktop" href="/modes/desktop">
+    A browser-native OS with a dock, launcher, app store, windows, and an AI system assistant.
+  </Card>
+  <Card title="Browser Mode" icon="browser" href="/modes/browser">
+    A full proxy browser with tabs, bookmarks, server switching, themes, and internal pages.
+  </Card>
+</CardGroup>

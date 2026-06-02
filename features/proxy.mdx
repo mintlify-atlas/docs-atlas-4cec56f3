@@ -1,0 +1,86 @@
+---
+title: "Proxy Browsing: Access the Web Inside Crafted Gamz"
+sidebarTitle: "Proxy"
+description: "Crafted Gamz routes web traffic through Ultraviolet and Scramjet proxy engines over Wisp WebSocket connections, enabling full open-web access from within the platform."
+---
+
+Proxy access is one of the defining features of Crafted Gamz. Rather than functioning purely as a game directory, the platform is built so that users can reach the broader open web from within the same environment where they play games, use apps, and manage their desktop. This makes Crafted Gamz especially useful on networks where direct web access is restricted — most notably school and work Chromebook environments — because the proxy layer operates entirely inside the browser without requiring any native software, VPN client, or browser extension.
+
+## Supported Proxy Engines
+
+Crafted Gamz supports two proxy engines, giving the platform flexibility and a fallback path if one encounters compatibility issues with a specific site.
+
+<CardGroup cols={2}>
+  <Card title="Ultraviolet" icon="shield" href="/reference/proxy-engines">
+    A widely adopted browser-based proxy engine designed for compatibility with a broad range of websites. Ultraviolet handles most standard web content reliably and is a well-established choice in the browser proxy ecosystem.
+  </Card>
+  <Card title="Scramjet" icon="bolt" href="/reference/proxy-engines">
+    A newer, actively developed proxy engine that powers the Crafted Gamz service worker. Scramjet handles request routing, response rewriting, and cookie management through an IndexedDB-backed configuration layer, and is the primary engine used in the platform's service worker implementation.
+  </Card>
+</CardGroup>
+
+Both engines are available within the platform. For a deeper technical breakdown of how each engine processes requests, see the [Proxy Engines reference](/reference/proxy-engines).
+
+## How It Works
+
+Crafted Gamz uses a service worker (`sw.js`) registered in the browser to intercept and route outbound requests through the proxy layer. The architecture works as follows:
+
+<Steps>
+  <Step title="Service Worker Registration">
+    When you load Crafted Gamz, the browser registers a service worker that positions itself between your tab and the network. All requests that match the proxy routing rules are handled by the worker rather than sent directly to their destination.
+  </Step>
+  <Step title="Wisp WebSocket Connection">
+    Proxied traffic is tunneled through a Wisp-backed WebSocket connection. Wisp is a lightweight WebSocket-based protocol that allows the proxy to carry full HTTP/S traffic over a single persistent connection, which is how the platform achieves open-web access without native networking APIs.
+  </Step>
+  <Step title="Scramjet Request Handling">
+    The Scramjet engine rewrites requests and responses in-flight, adjusting headers, URLs, cookies, and content so that the destination site functions correctly inside the proxied environment. The service worker maintains Scramjet's state in IndexedDB and repairs missing database stores automatically if they become corrupted.
+  </Step>
+  <Step title="Response Delivery">
+    The rewritten response is returned to your browser tab as if it came from a normal page load. From the user's perspective, the proxied site behaves like any other webpage.
+  </Step>
+</Steps>
+
+Because everything runs through the browser's service worker API, no native app, system proxy setting, or browser extension is needed. The proxy is entirely self-contained within Crafted Gamz.
+
+## Using the Proxy
+
+The proxy is accessible from both Website mode and Browser mode, each presenting it differently.
+
+<Tabs>
+  <Tab title="Website Mode">
+    Website mode includes a dedicated search and proxy section on the main landing page. Enter a URL or search term in the proxy search bar, and the platform routes your request through the proxy engine and loads the result inside the platform view. This is the fastest path to a proxied page if you want to reach a single site without switching to full Browser mode.
+  </Tab>
+  <Tab title="Browser Mode">
+    Browser mode is the most complete proxy browsing experience on the platform. The full address bar accepts any URL and routes it through the proxy. You get tabs, back and forward navigation, bookmarks, a bookmarks bar, and server and region switching — all built on top of the same Scramjet and Ultraviolet proxy layer. For users who want to use Crafted Gamz as a primary browsing workspace, Browser mode is the right choice.
+
+    Internal `cg://` pages are also available in Browser mode for navigating directly to platform features without leaving the proxied browser environment.
+  </Tab>
+</Tabs>
+
+## Ad Blocking
+
+The Crafted Gamz service worker includes a built-in ad blocker that runs as part of the proxy layer. When a proxied request matches a known ad network pattern, the service worker returns a `403 Site Blocked` response before the request reaches the network.
+
+The block list covers a wide range of ad networks and tracking endpoints, including:
+
+- Major programmatic ad platforms (Google, Amazon, AppNexus, Rubicon, PubMatic, Criteo, OpenX, Index Exchange)
+- Social ad networks (Facebook, Twitter/X, Yahoo)
+- Mobile ad SDKs (Unity Ads, AppLovin, Vungle, IronSource, Fyber, Smaato, Tapjoy, AdColony, Chartboost)
+- Native/content ad networks (Outbrain, Taboola, RevContent, MGID, Zedo)
+- Generic path patterns such as `/ads/`, `/adserver/`, `/adclick/`, `/banner_ads/`, `/sponsored/`, `/promotions/`, `/promo/`, `/affiliates/`, and `/partnerads/`
+
+This blocking happens at the service worker level, meaning it applies to all proxied traffic regardless of which site you are visiting — no separate extension or configuration is required.
+
+## Server and Region Switching
+
+Browser mode supports server and region switching through the platform's connection settings. This allows you to change which Wisp backend your proxy traffic routes through, which can be useful for improving performance or accessing region-specific content. Server and region options are accessible from the Browser mode interface without requiring a page reload.
+
+<Note>
+  The proxy layer in Crafted Gamz relies on a Wisp WebSocket backend to tunnel traffic. The quality and speed of your proxied browsing experience depends on the availability and latency of the connected Wisp server. You can switch servers in Browser mode if you experience performance issues.
+</Note>
+
+<Warning>
+  Use the proxy feature responsibly and in accordance with Crafted Gamz's terms of use, as well as the terms of service of any sites you access through the proxy. The proxy is intended to provide open web access in restrictive network environments, not to circumvent legal obligations or access restricted content in violation of applicable policies.
+</Warning>
+
+For a full technical reference on how the proxy engines are implemented and configured, see [Proxy Engines](/reference/proxy-engines).
