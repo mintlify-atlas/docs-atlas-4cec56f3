@@ -1,7 +1,7 @@
 ---
 title: "Proxy Browsing: Access the Web Inside Crafted Gamz"
 sidebarTitle: "Proxy"
-description: "Crafted Gamz routes web traffic through Ultraviolet and Scramjet proxy engines over Wisp WebSocket connections, enabling full open-web access from within the platform."
+description: "Crafted Gamz proxies web traffic through Ultraviolet and Scramjet engines over Wisp WebSocket, enabling full open-web access from within the platform."
 ---
 
 Proxy access is one of the defining features of Crafted Gamz. Rather than functioning purely as a game directory, the platform is built so that users can reach the broader open web from within the same environment where they play games, use apps, and manage their desktop. This makes Crafted Gamz especially useful on networks where direct web access is restricted — most notably school and work Chromebook environments — because the proxy layer operates entirely inside the browser without requiring any native software, VPN client, or browser extension.
@@ -63,9 +63,10 @@ The Crafted Gamz service worker includes a built-in ad blocker that runs as part
 
 The block list covers a wide range of ad networks and tracking endpoints, including:
 
-- Major programmatic ad platforms (Google, Amazon, AppNexus, Rubicon, PubMatic, Criteo, OpenX, Index Exchange)
+- Major programmatic ad platforms (Amazon, AppNexus/Xandr, Rubicon/Magnite, PubMatic, Criteo, OpenX, Index Exchange/Casale Media)
+- YouTube-specific ad endpoints (video info ad format parameters, stats/ads, and pagead paths)
 - Social ad networks (Facebook, Twitter/X, Yahoo)
-- Mobile ad SDKs (Unity Ads, AppLovin, Vungle, IronSource, Fyber, Smaato, Tapjoy, AdColony, Chartboost)
+- Mobile ad SDKs (Unity Ads, AppLovin, Vungle, IronSource, Fyber, Smaato, Tapjoy, AdColony, Chartboost, InMobi, SupersonicAds, StartApp, Airpush)
 - Native/content ad networks (Outbrain, Taboola, RevContent, MGID, Zedo)
 - Generic path patterns such as `/ads/`, `/adserver/`, `/adclick/`, `/banner_ads/`, `/sponsored/`, `/promotions/`, `/promo/`, `/affiliates/`, and `/partnerads/`
 
